@@ -10,7 +10,6 @@
   <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white"/>
   <img src="https://img.shields.io/badge/Allure-1E90FF?style=for-the-badge&logo=allure&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
 </div>
 
 ---
@@ -36,10 +35,10 @@
 
 ### 🧪 Что тестируем:
 
-| Тип тестов | Приложение                                           | Описание                                                      |
-| ---------- | ---------------------------------------------------- | ------------------------------------------------------------- |
-| 🖥️ **UI**  | [RealWorld](https://realworld.io)                    | Современное веб-приложение для отработки навыков тестирования |
-| 🔌 **API** | [Apichallenges](https://apichallenges.herokuapp.com) | Сервис для проверки корректности API-запросов                 |
+| Тип тестов | Приложение                                                           | Описание                                                      |
+| ---------- | -------------------------------------------------------------------- | ------------------------------------------------------------- |
+| 🖥️ **UI**  | [RealWorld](https://realworld.qa.guru/)                              | Современное веб-приложение для отработки навыков тестирования |
+| 🔌 **API** | [Apichallenges](https://apichallenges.eviltester.com/gui/challenges) | Сервис для проверки корректности API-запросов                 |
 
 ### 🔁 Куда интегрировано:
 
@@ -62,7 +61,6 @@
 | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white) | CI/CD (автоматический запуск)       |
 | ![Allure](https://img.shields.io/badge/Allure-1E90FF?style=flat-square&logo=allure&logoColor=white)                          | Отчёты и TestOps                    |
 | ![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white)                    | Уведомления о прогонах              |
-| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)                          | Контейнеризация окружения           |
 
 ---
 
@@ -98,6 +96,7 @@
 ### 1️⃣ Клонируйте репозиторий
 
 git clone https://github.com/maksimmostovoj-web/diplom.git
+
 2️⃣ Установите зависимости
 bash
 npm ci
@@ -117,9 +116,7 @@ bash
 Скрипт автоматически:
 
 ✅ запустит тесты
-
 ✅ сгенерирует отчёт
-
 ✅ отправит уведомление в Telegram
 
 🏗️ Jenkins
@@ -175,27 +172,36 @@ https://allure.autotests.cloud/project/...
 📨 Telegram-уведомления
 После каждого прогона (Jenkins или GitHub Actions) бот отправляет сообщение:
 
-html
+text
 <b>Результаты:</b>
 <b>Рабочее окружение:</b> test
 <b>Комментарий:</b> Дипломный проект JSt
 <b>Продолжительность:</b> 00:03:35
 
 <b>Всего сценариев:</b> 15
-<b>Успешных:</b> 12 (80%)
-<b>Упавших:</b> 2 (13%)
-<b>Пропущенных:</b> 1
+<b>Успешных:</b> 15 (100%)
+<b>Упавших:</b> 0 (0%)
+<b>Пропущенных:</b> 0
 
 <b>Отчет доступен по ссылке:</b> https://jenkins.autotests.cloud/...
 📎 К сообщению прикрепляется диаграмма с распределением результатов.
 
 ⌨️ Команды проекта
-Команда Описание
-npm test Запуск всех тестов
-npm run ui Запуск тестов в UI-режиме Playwright
-npm run report Открыть встроенный отчёт Playwright
-npm run allure:generate Сгенерировать Allure-отчёт
-npm run allure:serve Открыть Allure-отчёт в браузере
-npm run allure:send Отправить отчёт в Allure TestOps
-npm run allure:telegram Отправить уведомление в Telegram
-./run-tests.sh Полный цикл: тесты → отчёт → уведомление
+bash
+npm test # Запуск всех тестов
+npm run ui # Запуск тестов в UI-режиме Playwright
+npm run report # Открыть встроенный отчёт Playwright
+npm run allure:generate # Сгенерировать Allure-отчёт
+npm run allure:serve # Открыть Allure-отчёт в браузере
+npm run allure:send # Отправить отчёт в Allure TestOps
+npm run allure:telegram # Отправить уведомление в Telegram
+./run-tests.sh # Полный цикл: тесты → отчёт → уведомление
+
+📝 Примечания
+Все тесты написаны на JavaScript с использованием Playwright
+
+Для генерации тестовых данных используется Faker.js
+
+Отчёты формируются в Allure и доступны через Jenkins/GitHub Actions
+
+Уведомления отправляются в Telegram после каждого прогона
