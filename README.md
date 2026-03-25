@@ -219,15 +219,28 @@ https://allure.autotests.cloud/project/...
 
 ⌨️ Команды проекта
 
-npm test # Запуск всех тестов
+## Запуск всех тестов:
 
-npm run ui # Запуск тестов в UI-режиме Playwright
+# npm test
 
-npm run report # Открыть встроенный отчёт Playwright
+## Запуск тестов в UI-режиме Playwright
 
-npm run allure:generate # Сгенерировать Allure-отчёт
+# npm t -- api.spec.js
 
-npm run allure:serve # Открыть Allure-отчёт в браузере
+# Открыть встроенный отчёт Playwright
+
+npm run report
+
+# Сгенерировать Allure-отчёт
+
+# Открыть Allure-отчёт в браузере
+
+npx allure generate
+
+# Открыть Allure-отчёт в браузере
+
+```bash
+npx allure open
 
 npm run allure:send # Отправить отчёт в Allure TestOps
 
@@ -242,3 +255,4 @@ npm run allure:telegram # Отправить уведомление в Telegram
 Отчёты формируются в Allure и доступны через Jenkins/GitHub Actions
 
 Уведомления отправляются в Telegram после каждого прогона
+```
