@@ -205,7 +205,7 @@ npx allure open
 
 ## 🧪 Allure TestOps
 
-[![Allure TestOps](https://img.shields.io/badge/Allure_TestOps-5155-1E90FF?style=for-the-badge&logo=allure&logoColor=white)](https://allure.autotests.cloud/project/5155/test-cases?treeId=0)
+🔗 **[Allure TestOps Project #5155](https://allure.autotests.cloud/project/5155/test-cases?treeId=0)**
 
 ### 📊 В TestOps хранится:
 
