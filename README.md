@@ -129,7 +129,7 @@ npx playwright test api.spec.js
 npx playwright test ui.spec.js
 ```
 
-### Работа с отчётами
+### 4️⃣ Работа с отчётами
 
 **Открыть встроенный отчёт Playwright**
 
