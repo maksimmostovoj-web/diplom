@@ -217,42 +217,51 @@ https://allure.autotests.cloud/project/...
 <b>Отчет доступен по ссылке:</b> https://jenkins.autotests.cloud/...
 📎 К сообщению прикрепляется диаграмма с распределением результатов.
 
-⌨️ Команды проекта
+## ⌨️ Команды проекта
 
-## Запуск всех тестов:
+### Запуск тестов
 
-# npm test
+```bash
+# Запуск всех тестов
+npm test
 
-## Запуск тестов в UI-режиме Playwright
+# Запуск API тестов (файл api.spec.js)
+npx playwright test api.spec.js
 
-# npm t -- api.spec.js
+# Запуск тестов в UI-режиме Playwright
+npx playwright test --ui
+```
 
+### Работа с отчётами
+
+```bash
 # Открыть встроенный отчёт Playwright
-
 npm run report
 
 # Сгенерировать Allure-отчёт
-
-# Открыть Allure-отчёт в браузере
-
 npx allure generate
 
 # Открыть Allure-отчёт в браузере
+npx allure open
+```
+
+### Интеграция и CI/CD
 
 ```bash
-npx allure open
+# Отправить отчёт в Allure TestOps
+npm run allure:send
 
-npm run allure:send # Отправить отчёт в Allure TestOps
+# Отправить уведомление в Telegram
+npm run allure:telegram
 
-npm run allure:telegram # Отправить уведомление в Telegram
-
-./run-tests.sh # Полный цикл: тесты → отчёт → уведомление
-
-📝 Примечания
-
-Для генерации тестовых данных используется Faker.js
-
-Отчёты формируются в Allure и доступны через Jenkins/GitHub Actions
-
-Уведомления отправляются в Telegram после каждого прогона
+# Полный цикл: тесты → отчёт → уведомление
+./run-tests.sh
 ```
+
+---
+
+## 📝 Примечания
+
+- Для генерации тестовых данных используется **Faker.js**
+- Отчёты формируются в **Allure** и доступны через Jenkins/GitHub Actions
+- Уведомления отправляются в **Telegram** после каждого прогона
