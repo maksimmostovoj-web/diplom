@@ -98,65 +98,91 @@
 git clone https://github.com/maksimmostovoj-web/diplom.git
 
 2️⃣ Установите зависимости
-bash
+
 npm ci
+
 npx playwright install
+
 3️⃣ Запустите тесты
-bash
+
 npm test # Все тесты
+
 npm run ui # UI-режим Playwright
+
 npm run report # Открыть встроенный отчёт Playwright
+
 4️⃣ Allure-отчёт
-bash
+
 npm run allure:generate # Сгенерировать отчёт
+
 npm run allure:serve # Открыть отчёт в браузере
+
 5️⃣ Быстрый запуск + уведомление 🚀
-bash
+
 ./run-tests.sh
+
 Скрипт автоматически:
 
 ✅ запустит тесты
+
 ✅ сгенерирует отчёт
+
 ✅ отправит уведомление в Telegram
 
 🏗️ Jenkins
-Название джобы: 001-maksimyyh-js_diplom
 
 🚀 Запуск
+
 Авторизуйтесь в Jenkins
 
-Найдите джобу
+Найти джобу: 001-maksimyyh-js_diplom
 
 Нажмите Build Now
 
 ⚙️ Что происходит внутри:
-Действие Статус
+
 Клонирование репозитория ✅
+
 Установка зависимостей ✅
+
 Запуск тестов ✅
+
 Генерация Allure-отчёта ✅
+
 Отправка результатов в Allure TestOps ✅
+
 Уведомление в Telegram ✅
+
 📎 Результаты: Allure-отчёт доступен по ссылке внутри джобы.
 
 ⚡ GitHub Actions
-🔁 Триггеры запуска
-Push в ветку main / master
 
-Pull Request в main / master
+🔁 Триггеры запуска
+
+Push в ветку main
 
 ⚙️ Что происходит внутри:
+
 Действие Статус
+
 Установка Node.js ✅
+
 Установка зависимостей ✅
+
 Запуск тестов ✅
+
 Генерация Allure-отчёта ✅
+
 Отправка результатов в Allure TestOps ✅
+
 Уведомление в Telegram ✅
+
 🔍 Где смотреть: вкладка Actions на GitHub
 
 🧪 Allure TestOps
+
 🔗 Ссылка на проект:
+
 https://allure.autotests.cloud/project/...
 
 В TestOps хранится:
@@ -172,33 +198,44 @@ https://allure.autotests.cloud/project/...
 📨 Telegram-уведомления
 После каждого прогона (Jenkins или GitHub Actions) бот отправляет сообщение:
 
-text
 <b>Результаты:</b>
+
 <b>Рабочее окружение:</b> test
+
 <b>Комментарий:</b> Дипломный проект JSt
+
 <b>Продолжительность:</b> 00:03:35
 
 <b>Всего сценариев:</b> 15
+
 <b>Успешных:</b> 15 (100%)
+
 <b>Упавших:</b> 0 (0%)
+
 <b>Пропущенных:</b> 0
 
 <b>Отчет доступен по ссылке:</b> https://jenkins.autotests.cloud/...
 📎 К сообщению прикрепляется диаграмма с распределением результатов.
 
 ⌨️ Команды проекта
-bash
+
 npm test # Запуск всех тестов
+
 npm run ui # Запуск тестов в UI-режиме Playwright
+
 npm run report # Открыть встроенный отчёт Playwright
+
 npm run allure:generate # Сгенерировать Allure-отчёт
+
 npm run allure:serve # Открыть Allure-отчёт в браузере
+
 npm run allure:send # Отправить отчёт в Allure TestOps
+
 npm run allure:telegram # Отправить уведомление в Telegram
+
 ./run-tests.sh # Полный цикл: тесты → отчёт → уведомление
 
 📝 Примечания
-Все тесты написаны на JavaScript с использованием Playwright
 
 Для генерации тестовых данных используется Faker.js
 
