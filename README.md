@@ -236,7 +236,7 @@ npx allure open
 **Запуск всех тестов**
 
 ```bash
-npm test
+npm t
 ```
 
 **Запуск API тестов (файл api.spec.js)**
