@@ -140,7 +140,7 @@ npm run allure:generate
 **Открыть отчёт в браузере**
 
 ```bash
-npm run allure:serve
+npx allure open
 ```
 
 ### 5️⃣ Быстрый запуск + уведомление 🚀
@@ -205,8 +205,7 @@ npm run allure:serve
 
 ## 🧪 Allure TestOps
 
-🔗 **Ссылка на проект:**  
-[https://allure.autotests.cloud/project/...](https://allure.autotests.cloud/project/...)
+[![Allure TestOps](https://img.shields.io/badge/Allure_TestOps-5155-1E90FF?style=for-the-badge&logo=allure&logoColor=white)](https://allure.autotests.cloud/project/5155/test-cases?treeId=0)
 
 ### 📊 В TestOps хранится:
 
@@ -219,26 +218,26 @@ npm run allure:serve
 
 После каждого прогона (Jenkins или GitHub Actions) бот отправляет сообщение:
 
-````html
-<b>Результаты:</b>
+**Результаты:**  
+Рабочее окружение: test  
+Комментарий: Дипломный проект JS  
+Продолжительность: 00:03:35  
+Всего сценариев: 15  
+Успешных: 15 (100%)  
+Упавших: 0 (0%)  
+Пропущенных: 0  
+Отчет доступен по ссылке: https://maksimmostovoj-web.github.io/diplom/
 
-<b>Рабочее окружение:</b> test
+> 📎 К сообщению прикрепляется диаграмма с распределением результатов.
+> ⌨️Команды проекта
 
-<b>Комментарий:</b> Дипломный проект JS
+### Запуск тестов
 
-<b>Продолжительность:</b> 00:03:35
+**Запуск всех тестов**
 
-<b>Всего сценариев:</b> 15
-
-<b>Успешных:</b> 15 (100%)
-
-<b>Упавших:</b> 0 (0%)
-
-<b>Пропущенных:</b> 0
-
-<b>Отчет доступен по ссылке:</b> https://jenkins.autotests.cloud/... ## ⌨️
-Команды проекта ### Запуск тестов **Запуск всех тестов** ```bash npm test
-````
+```bash
+npm test
+```
 
 **Запуск API тестов (файл api.spec.js)**
 
