@@ -164,6 +164,14 @@ npx allure open
 2. Найдите джобу: `001-maksimyyh-js_diplom`
 3. Нажмите **Build Now**
 
+### 📸 Jenkins сборка
+
+<div align="center">
+  <img src="images/jenkins.png" alt="Jenkins сборка" width="850"/>
+  <br/>
+  <em>Процесс сборки и выполнения тестов в Jenkins</em>
+</div>
+
 ### ⚙️ Что происходит внутри
 
 | Этап                                  | Статус |
@@ -188,6 +196,14 @@ npx allure open
 | 🔄 **Автоматический** | Push в ветку `main`                        |
 | 👆 **Ручной**         | Ручной запуск workflow (workflow_dispatch) |
 
+### 📸 Allure отчёт в GitHub Actions
+
+<div align="center">
+  <img src="images/allure-github.png" alt="Allure отчёт в GitHub Actions" width="850"/>
+  <br/>
+  <em>Allure отчёт после выполнения тестов в GitHub Actions</em>
+</div>
+
 ### ⚙️ Что происходит внутри
 
 | Этап                                  | Статус |
@@ -206,6 +222,14 @@ npx allure open
 ## 🧪 Allure TestOps
 
 🔗 **[Allure TestOps Project #5155](https://allure.autotests.cloud/project/5155/test-cases?treeId=0)**
+
+### 📸 Дашборд Allure TestOps
+
+<div align="center">
+  <img src="images/allure-testops.png" alt="Allure TestOps дашборд" width="850"/>
+  <br/>
+  <em>Главный дашборд Allure TestOps с историей прогонов и метриками качества</em>
+</div>
 
 ### 📊 В TestOps хранится:
 
@@ -229,6 +253,22 @@ npx allure open
 Отчет доступен по ссылке: https://maksimmostovoj-web.github.io/diplom/
 
 > 📎 К сообщению прикрепляется диаграмма с распределением результатов.
+
+### 📸 Пример уведомления от Jenkins
+
+<div align="center">
+  <img src="images/telegram-jenkins.png" alt="Telegram уведомление от Jenkins" width="500"/>
+  <br/>
+  <em>Уведомление в Telegram после успешного прогона тестов в Jenkins</em>
+</div>
+
+### 📸 Пример уведомления от GitHub Actions
+
+<div align="center">
+  <img src="images/telegram-github.png" alt="Telegram уведомление от GitHub Actions" width="500"/>
+  <br/>
+  <em>Уведомление в Telegram после успешного прогона тестов в GitHub Actions</em>
+</div>
 > ⌨️Команды проекта
 
 ### Запуск тестов
