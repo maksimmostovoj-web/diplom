@@ -35,8 +35,8 @@ const test = base.extend({
     
     // Выводим токен и ссылку в консоль
     console.log('\n========================================');
-    console.log('🔑 Challenger Token:', token);
-    console.log('🔗 GUI ссылка для просмотра прогресса:');
+    console.log('Challenger Token:', token);
+    console.log('GUI ссылка для просмотра прогресса:');
     console.log(`   https://apichallenges.eviltester.com/gui/challenges/${token}`);
     console.log('========================================\n');
     
