@@ -219,42 +219,59 @@ https://allure.autotests.cloud/project/...
 
 ## ⌨️ Команды проекта
 
+## ⌨️ Команды проекта
+
 ### Запуск тестов
 
+**Запуск всех тестов**
+
 ```bash
-# Запуск всех тестов
 npm test
+```
 
-# Запуск API тестов (файл api.spec.js)
+**Запуск API тестов (файл api.spec.js)**
+
+```bash
 npx playwright test api.spec.js
+```
 
-# Запуск тестов в UI-режиме Playwright
-npx playwright test --ui
+**Запуск UI тестов (файл ui.spec.js)**
+
+```bash
+npx playwright test ui.spec.js
 ```
 
 ### Работа с отчётами
 
+**Открыть встроенный отчёт Playwright**
+
 ```bash
-# Открыть встроенный отчёт Playwright
 npm run report
+```
 
-# Сгенерировать Allure-отчёт
+**Сгенерировать Allure-отчёт**
+
+```bash
 npx allure generate
+```
 
-# Открыть Allure-отчёт в браузере
+**Открыть Allure-отчёт в браузере**
+
+```bash
 npx allure open
 ```
 
 ### Интеграция и CI/CD
 
+**Отправить отчёт в Allure TestOps**
+
 ```bash
-# Отправить отчёт в Allure TestOps
 npm run allure:send
+```
 
-# Отправить уведомление в Telegram
-npm run allure:telegram
+**Полный цикл: тесты → отчёт → уведомление**
 
-# Полный цикл: тесты → отчёт → уведомление
+```bash
 ./run-tests.sh
 ```
 
