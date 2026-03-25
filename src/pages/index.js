@@ -1,0 +1,6 @@
+export * from './main.page.js'
+export * from './register.page.js'
+export * from './home.page.js'
+export * from './settings.page.js'
+export * from './article.page.js'
+export * from './article_edit.page.js'

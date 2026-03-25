@@ -1,0 +1,42 @@
+{
+  "name": "diplom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "report": "npx playwright show-report",
+    "allure:generate": "allure generate allure-results -o allure-report --clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maksimmostovoj-web/diplom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/maksimmostovoj-web/diplom/issues"
+  },
+  "homepage": "https://github.com/maksimmostovoj-web/diplom#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.2.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^24.10.1",
+    "allure-playwright": "^3.6.0",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^10.1.8"
+  }
+}

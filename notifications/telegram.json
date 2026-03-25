@@ -1,0 +1,21 @@
+{
+  "base": {
+    "logo": "",
+    "project": "Дипломный проект JS",
+    "environment": "test",
+    "comment": "тестирование",
+    "reportLink": "https://jenkins.autotests.cloud/job/YourJobName/lastBuild/allure/",
+    "language": "ru",
+    "allureFolder": "allure-report",
+    "enableChart": true,
+    "enableSuitesPublishing": false,
+    "customData": {}
+  },
+  "telegram": {
+    "token": "8774837354:AAEyYJIotc5Ix8V53OX63WIWK22fh_qrrgk",
+    "chat": "-5202391707",
+    "topic": "",
+    "replyTo": "",
+    "templatePath": "/templates/telegram.ftl"
+  }
+}
