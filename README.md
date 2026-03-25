@@ -111,33 +111,39 @@ npx playwright install
 
 ### 3️⃣ Запустите тесты
 
-**Все тесты**
+**Запуск всех тестов**
 
 ```bash
-npm test
+npm t
 ```
 
-**UI-режим Playwright**
+**Запуск API тестов (файл api.spec.js)**
 
 ```bash
-npm run ui
+npx playwright test api.spec.js
 ```
+
+**Запуск UI тестов (файл ui.spec.js)**
+
+```bash
+npx playwright test ui.spec.js
+```
+
+### Работа с отчётами
 
 **Открыть встроенный отчёт Playwright**
 
 ```bash
-npm run report
+npx playwright show-report
 ```
 
-### 4️⃣ Allure-отчёт
-
-**Сгенерировать отчёт**
+**Сгенерировать Allure-отчёт**
 
 ```bash
-npm run allure:generate
+npx allure generate
 ```
 
-**Открыть отчёт в браузере**
+**Открыть Allure-отчёт в браузере**
 
 ```bash
 npx allure open
@@ -269,60 +275,6 @@ npx allure open
   <br/>
   <em>Уведомление в Telegram после успешного прогона тестов в GitHub Actions</em>
 </div>
-
-## ⌨️Команды проекта
-
-**Запуск всех тестов**
-
-```bash
-npm t
-```
-
-**Запуск API тестов (файл api.spec.js)**
-
-```bash
-npx playwright test api.spec.js
-```
-
-**Запуск UI тестов (файл ui.spec.js)**
-
-```bash
-npx playwright test ui.spec.js
-```
-
-### Работа с отчётами
-
-**Открыть встроенный отчёт Playwright**
-
-```bash
-npm run report
-```
-
-**Сгенерировать Allure-отчёт**
-
-```bash
-npx allure generate
-```
-
-**Открыть Allure-отчёт в браузере**
-
-```bash
-npx allure open
-```
-
-### Интеграция и CI/CD
-
-**Отправить отчёт в Allure TestOps**
-
-```bash
-npm run allure:send
-```
-
-**Полный цикл: тесты → отчёт → уведомление**
-
-```bash
-./run-tests.sh
-```
 
 ---
 
