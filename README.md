@@ -117,13 +117,13 @@ npx playwright install
 npm t
 ```
 
-**Запуск API тестов (файл api.spec.js)**
+**Запуск API тестов**
 
 ```bash
 npx playwright test api.spec.js
 ```
 
-**Запуск UI тестов (файл ui.spec.js)**
+**Запуск UI тестов**
 
 ```bash
 npx playwright test ui.spec.js

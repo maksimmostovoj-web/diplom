@@ -1,5 +1,5 @@
-import { expect } from '@playwright/test'
 import { test } from '../src/helpers/fixtures/fixture.js'
+
 import * as allure from 'allure-js-commons'
 import { faker } from '@faker-js/faker'
 
@@ -22,7 +22,7 @@ test('Пользователь может изменить свое имя в п
 
   // Переход в профиль и проверка отображения нового имени
   await app.homePage.goToProfile()
-  await expect(app.homePage.profileHeading(newVersionName)).toBeVisible()
+  await app.homePage.expectProfileHeadingToBeVisible(newVersionName)
 })
 
 test('Пользователь создает новую статью', async ({ registredUser }) => {
@@ -75,7 +75,7 @@ test('Пользователь редактирует статью', async ({ re
 
   // Переход в профиль и открытие созданной статьи
   await app.homePage.goToProfile()
-  await app.homePage.articleLink(title, about).first().click()
+  await app.homePage.clickOnArticle(title, about)
 
   // Редактирование статьи (обновление заголовка и описания)
   await app.articleEditPage.editArticle(updatedTitle, updatedAbout, 0)
@@ -103,5 +103,5 @@ test('Пользователь удаляет статью', async ({ registredU
 
   // Проверка, что статья исчезла из профиля
   await app.homePage.goToProfile()
-  await expect(app.homePage.articleLink(title, about)).not.toBeVisible()
+  await app.homePage.expectArticleNotToBeVisible(title, about)
 })

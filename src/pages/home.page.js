@@ -27,14 +27,14 @@ export class HomePage {
 
   // Переход в настройки профиля
   async goToSettings() {
-    await this.userDropdown.click() // Открываем меню пользователя
-    await this.settingsLink.click() // Кликаем на настройки
+    await this.userDropdown.click()
+    await this.settingsLink.click()
   }
 
   // Переход на страницу профиля
   async goToProfile() {
-    await this.userDropdown.click() // Открываем меню пользователя
-    await this.profileLink.click() // Кликаем на профиль
+    await this.userDropdown.click()
+    await this.profileLink.click()
   }
 
   // Получение ссылки на статью по заголовку и описанию
@@ -53,6 +53,11 @@ export class HomePage {
       .describe(`Заголовок профиля "${name}"`)
   }
 
+  // Клик по статье по заголовку и описанию
+  async clickOnArticle(title, about) {
+    await this.articleLink(title, about).first().click()
+  }
+
   // Проверка, что имя пользователя соответствует ожидаемому
   async expectProfileNameToBe(expectedName) {
     await expect(this.userName).toContainText(expectedName)
@@ -62,6 +67,12 @@ export class HomePage {
   // Проверка, что имя пользователя отображается
   async expectProfileNameToBeVisible() {
     await expect(this.userName).toBeVisible()
+    return this
+  }
+
+  // Проверка, что заголовок профиля виден
+  async expectProfileHeadingToBeVisible(name) {
+    await expect(this.profileHeading(name)).toBeVisible()
     return this
   }
 

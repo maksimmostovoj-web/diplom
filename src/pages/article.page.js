@@ -35,14 +35,13 @@ export class ArticlePage {
 
   // Создание новой статьи
   async createArticle(title, about, content, tags) {
-    // Переход на страницу создания статьи
     await this.newArticleLink.click()
-    // Заполнение формы
+
     await this.articleTitleInput.fill(title)
     await this.articleAboutInput.fill(about)
     await this.articleContentInput.fill(content)
     await this.tagsInput.fill(tags)
-    // Публикация статьи
+
     await this.publishButton.click()
   }
 

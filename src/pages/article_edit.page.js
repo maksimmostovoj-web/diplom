@@ -11,7 +11,7 @@ export class ArticleEditPage {
     this.deleteArticleButtons = page
       .getByRole('button', { name: ' Delete Article' })
       .describe('Кнопки удаления статьи')
-    
+
     // Локаторы для формы редактирования
     this.articleTitleInput = page
       .getByRole('textbox', { name: 'Article Title' })
@@ -22,7 +22,7 @@ export class ArticleEditPage {
     this.updateButton = page
       .getByRole('button', { name: 'Update Article' })
       .describe('Кнопка обновления статьи')
-    
+
     // Локаторы для проверок
     this.editButton = page
       .locator('a')
@@ -32,31 +32,27 @@ export class ArticleEditPage {
 
   // Редактирование статьи
   async editArticle(title, about, articleIndex = 0) {
-    // Клик по ссылке редактирования нужной статьи
     await this.editArticleLinks.nth(articleIndex).click()
 
-    // Обновление заголовка если передан
     if (title) {
       await this.articleTitleInput.fill(title)
     }
-    // Обновление описания если передано
+
     if (about) {
       await this.articleAboutInput.fill(about)
     }
 
-    // Сохранение изменений
     await this.updateButton.click()
   }
 
   // Удаление статьи
   async deleteArticle(articleIndex = 0) {
     return new Promise((resolve) => {
-      // Обработка диалогового окна подтверждения
       this.page.once('dialog', async (dialog) => {
-        await dialog.accept()  // Подтверждение удаления
+        await dialog.accept()
         resolve(dialog.message())
       })
-      // Клик по кнопке удаления
+
       this.deleteArticleButtons.nth(articleIndex).click()
     })
   }
