@@ -5,13 +5,15 @@ const { TodosService } = require('./todos.service')
 const { HeartbeatService } = require('./heartbeat.service')
 
 class Api {
-  constructor(request) {
+  constructor(request, baseURL) {
     this.request = request
-    this.challengerService = new ChallengerService(request)
-    this.challengesService = new ChallengesService(request)
-    this.todoService = new TodoService(request)
-    this.todosService = new TodosService(request)
-    this.heartbeatService = new HeartbeatService(request)
+    this.baseURL = baseURL
+    // Инициализация всех API-сервисов с передачей baseURL
+    this.challengerService = new ChallengerService(request, baseURL)
+    this.challengesService = new ChallengesService(request, baseURL)
+    this.todoService = new TodoService(request, baseURL)
+    this.todosService = new TodosService(request, baseURL)
+    this.heartbeatService = new HeartbeatService(request, baseURL)
   }
 }
 

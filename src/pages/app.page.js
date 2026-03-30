@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker'
 import {
   HomePage,
   MainPage,
@@ -19,17 +18,5 @@ export class App {
     this.settingsPage = new SettingsPage(page)
     this.articlePage = new ArticlePage(page)
     this.articleEditPage = new ArticleEditPage(page)
-  }
-
-  // Генерация тестовых данных для статьи
-  createArticle() {
-    return {
-      title: faker.lorem.words(3),      // Заголовок статьи
-      about: faker.lorem.sentence(),     // Описание статьи
-      content: faker.lorem.paragraph(),  // Содержимое статьи
-      tags: faker.lorem.word(),          // Теги статьи
-      updatedTitle: faker.lorem.words(4),     // Обновленный заголовок
-      updatedAbout: faker.lorem.sentence()    // Обновленное описание
-    }
   }
 }

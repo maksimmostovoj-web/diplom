@@ -17,7 +17,7 @@ export const test = base.extend({
     const { email, name, password } = user
 
     // Регистрация нового пользователя
-    await app.mainPage.open('https://realworld.qa.guru/')
+    await app.mainPage.open('/')
     await app.mainPage.gotoRegister()
     await app.registerPage.register(name, email, password)
 
@@ -32,10 +32,10 @@ export const test = base.extend({
     const user = new UserBuilder().withEmail().withName().withPassword().build()
     const { email, name, password } = user
 
-    await app.mainPage.open('https://realworld.qa.guru/')
+    await app.mainPage.open('/')
     await app.mainPage.gotoRegister()
     await app.registerPage.register(name, email, password)
-    await app.mainPage.open(`https://realworld.qa.guru/#/profile/${name}`)
+    await app.mainPage.open(`/#/profile/${name}`)
     await use({ app, user, page: app.page })
   },
 

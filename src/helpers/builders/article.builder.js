@@ -1,6 +1,12 @@
 import { faker } from '@faker-js/faker'
 
 export class ArticleBuilder {
+  // Установка имени пользователя (для проверки имени в профиле)
+  withName(name) {
+    this.name = name ?? faker.person.fullName()
+    return this
+  }
+
   // Установка заголовка статьи
   withTitle(title) {
     this.title = title ?? faker.lorem.words(3)
@@ -34,6 +40,12 @@ export class ArticleBuilder {
   // Установка обновленного описания
   withUpdatedAbout(about) {
     this.updatedAbout = about ?? faker.lorem.sentence()
+    return this
+  }
+
+  // Установка текста комментария
+  withComment(comment) {
+    this.comment = comment ?? faker.lorem.sentence()
     return this
   }
 

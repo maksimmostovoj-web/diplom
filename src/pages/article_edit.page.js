@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test'
-
 export class ArticleEditPage {
   constructor(page) {
     this.page = page
@@ -57,9 +55,8 @@ export class ArticleEditPage {
     })
   }
 
-  // Проверка, что кнопка редактирования не отображается (статья удалена)
-  async expectEditButtonNotVisible() {
-    await expect(this.editButton).not.toBeVisible()
-    return this
+  // Получение кнопки редактирования как элемент
+  getEditButton() {
+    return this.editButton
   }
 }

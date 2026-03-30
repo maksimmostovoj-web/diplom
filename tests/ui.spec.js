@@ -1,107 +1,107 @@
 import { test } from '../src/helpers/fixtures/fixture.js'
-
 import * as allure from 'allure-js-commons'
-import { faker } from '@faker-js/faker'
+import { expect } from '@playwright/test'
+import { ArticleBuilder } from '../src/helpers/builders/article.builder.js'
 
 test('Пользователь может изменить свое имя в профиле', async ({
   registredUser
 }) => {
-  // Привязка к тест-кейсу в TMS
   await allure.tms('TMS-456', 'Related TMS issue')
 
   const { app } = registredUser
-  // Генерация нового имени
-  const newVersionName = faker.person.fullName()
+  const newVersionName = new ArticleBuilder().withName().build().name
 
-  // Переход в настройки и обновление имени
   await app.homePage.goToSettings()
   await app.settingsPage.updateName(newVersionName)
 
-  // Проверка, что имя изменилось в навигации
-  await app.homePage.expectProfileNameToBe(newVersionName)
+  await expect(app.homePage.getUserName()).toContainText(newVersionName)
 
-  // Переход в профиль и проверка отображения нового имени
   await app.homePage.goToProfile()
-  await app.homePage.expectProfileHeadingToBeVisible(newVersionName)
+  await expect(app.homePage.getProfileHeading(newVersionName)).toBeVisible()
 })
 
 test('Пользователь создает новую статью', async ({ registredUser }) => {
   const { app } = registredUser
-  // Генерация тестовых данных для статьи
-  const article = app.createArticle()
+  const article = new ArticleBuilder()
+    .withTitle()
+    .withAbout()
+    .withContent()
+    .withTags()
+    .build()
   const { title, about, content, tags } = article
 
-  // Создание статьи через форму
   await app.articlePage.createArticle(title, about, content, tags)
 
-  // Проверка, что статья успешно создана
-  await app.articlePage.expectArticleCreated(title)
+  await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
 
-  // Переход в профиль и проверка отображения статьи
   await app.homePage.goToProfile()
-  await app.homePage.expectArticleToBeVisible(title, about)
+  await expect(app.homePage.getArticleLink(title, about)).toBeVisible()
 })
 
 test('Пользователь оставляет комментарий к статье', async ({
   registredUser
 }) => {
   const { app } = registredUser
-  // Генерация тестовых данных для статьи
-  const article = app.createArticle()
+  const article = new ArticleBuilder()
+    .withTitle()
+    .withAbout()
+    .withContent()
+    .withTags()
+    .build()
   const { title, about, content, tags } = article
-  // Генерация текста комментария
-  const commentText = faker.lorem.sentence()
+  const commentText = new ArticleBuilder().withComment().build().comment
 
-  // Создание статьи
   await app.articlePage.createArticle(title, about, content, tags)
-  await app.articlePage.expectArticleCreated(title)
+  await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
 
-  // Добавление комментария к созданной статье
   await app.articlePage.addComment(commentText)
 
-  // Проверка, что комментарий отображается
-  await app.articlePage.expectCommentAdded(commentText)
+  await expect(app.articlePage.getCommentText(commentText)).toBeVisible()
 })
 
 test('Пользователь редактирует статью', async ({ registredUser }) => {
   const { app } = registredUser
-  // Генерация тестовых данных для статьи
-  const article = app.createArticle()
+  const article = new ArticleBuilder()
+    .withTitle()
+    .withAbout()
+    .withContent()
+    .withTags()
+    .withUpdatedTitle()
+    .withUpdatedAbout()
+    .build()
   const { title, about, content, tags, updatedTitle, updatedAbout } = article
 
-  // Создание исходной статьи
   await app.articlePage.createArticle(title, about, content, tags)
-  await app.articlePage.expectArticleCreated(title)
+  await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
 
-  // Переход в профиль и открытие созданной статьи
   await app.homePage.goToProfile()
   await app.homePage.clickOnArticle(title, about)
 
-  // Редактирование статьи (обновление заголовка и описания)
   await app.articleEditPage.editArticle(updatedTitle, updatedAbout, 0)
 
-  // Проверка, что статья обновлена
-  await app.articlePage.expectArticleCreated(updatedTitle)
+  await expect(app.articlePage.getArticleHeading(updatedTitle)).toBeVisible()
 
-  // Проверка, что обновленная статья отображается в профиле
   await app.homePage.goToProfile()
-  await app.homePage.expectArticleToBeVisible(updatedTitle, updatedAbout)
+  await expect(
+    app.homePage.getArticleLink(updatedTitle, updatedAbout)
+  ).toBeVisible()
 })
 
 test('Пользователь удаляет статью', async ({ registredUser }) => {
   const { app } = registredUser
-  // Генерация тестовых данных для статьи
-  const article = app.createArticle()
+  const article = new ArticleBuilder()
+    .withTitle()
+    .withAbout()
+    .withContent()
+    .withTags()
+    .build()
   const { title, about, content, tags } = article
 
-  // Создание статьи
   await app.articlePage.createArticle(title, about, content, tags)
-  await app.articlePage.expectArticleCreated(title)
+  await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
 
-  // Удаление созданной статьи
   await app.articleEditPage.deleteArticle(0)
 
-  // Проверка, что статья исчезла из профиля
   await app.homePage.goToProfile()
-  await app.homePage.expectArticleNotToBeVisible(title, about)
+  await expect(app.homePage.getArticleLink(title, about)).not.toBeVisible()
 })

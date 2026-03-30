@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test'
-
 export class ArticlePage {
   constructor(page) {
     this.page = page
@@ -51,27 +49,15 @@ export class ArticlePage {
     await this.postCommentButton.click()
   }
 
-  // Получение заголовка статьи
-  articleHeading(title) {
+  // Получение заголовка статьи как элемент
+  getArticleHeading(title) {
     return this.page
       .getByRole('heading', { name: title })
       .describe(`Заголовок статьи "${title}"`)
   }
 
-  // Получение текста комментария
-  commentText(text) {
+  // Получение текста комментария как элемент
+  getCommentText(text) {
     return this.page.getByText(text).describe(`Текст комментария: "${text}"`)
-  }
-
-  // Проверка, что статья создана
-  async expectArticleCreated(title) {
-    await expect(this.articleHeading(title)).toBeVisible()
-    return this
-  }
-
-  // Проверка, что комментарий добавлен
-  async expectCommentAdded(commentText) {
-    await expect(this.commentText(commentText)).toBeVisible()
-    return this
   }
 }

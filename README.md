@@ -126,7 +126,7 @@ npx playwright test api.spec.js
 **Запуск UI тестов**
 
 ```bash
-npx playwright test ui.spec.js
+npx playwright test tests/ui/
 ```
 
 ### 4️⃣ Работа с отчётами

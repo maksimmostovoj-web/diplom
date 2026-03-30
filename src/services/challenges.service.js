@@ -1,11 +1,12 @@
 class ChallengesService {
-  constructor(request) {
+  constructor(request, baseURL) {
     this.request = request
-    this.apiURL = 'https://apichallenges.eviltester.com/'
+    this.baseURL = baseURL
   }
 
+  // Получение списка всех челленджей
   async get(token) {
-    const response = await this.request.get(`${this.apiURL}challenges`, {
+    const response = await this.request.get(`${this.baseURL}challenges`, {
       headers: { 'x-challenger': token }
     })
     return response

@@ -1,5 +1,3 @@
-import { expect } from '@playwright/test'
-
 export class HomePage {
   constructor(page) {
     this.page = page
@@ -58,33 +56,18 @@ export class HomePage {
     await this.articleLink(title, about).first().click()
   }
 
-  // Проверка, что имя пользователя соответствует ожидаемому
-  async expectProfileNameToBe(expectedName) {
-    await expect(this.userName).toContainText(expectedName)
-    return this
+  // Получение имени пользователя
+  getUserName() {
+    return this.userName
   }
 
-  // Проверка, что имя пользователя отображается
-  async expectProfileNameToBeVisible() {
-    await expect(this.userName).toBeVisible()
-    return this
+  // Получение заголовка профиля как элемент
+  getProfileHeading(name) {
+    return this.profileHeading(name)
   }
 
-  // Проверка, что заголовок профиля виден
-  async expectProfileHeadingToBeVisible(name) {
-    await expect(this.profileHeading(name)).toBeVisible()
-    return this
-  }
-
-  // Проверка, что статья отображается
-  async expectArticleToBeVisible(title, about) {
-    await expect(this.articleLink(title, about)).toBeVisible()
-    return this
-  }
-
-  // Проверка, что статья не отображается (удалена)
-  async expectArticleNotToBeVisible(title, about) {
-    await expect(this.articleLink(title, about)).not.toBeVisible()
-    return this
+  // Получение ссылки на статью как элемент
+  getArticleLink(title, about) {
+    return this.articleLink(title, about)
   }
 }

@@ -1,6 +1,6 @@
 const { expect } = require('@playwright/test')
-const { apiTest } = require('../src/helpers/fixtures/index')
-const { TodoBuilder } = require('../src/helpers/builders/index')
+const { apiTest } = require('../../src/helpers/fixtures/index')
+const { TodoBuilder } = require('../../src/helpers/builders/index')
 
 apiTest(
   'GET /challenges - получить список челленджей',
