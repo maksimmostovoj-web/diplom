@@ -120,7 +120,7 @@ npm t
 **Запуск API тестов**
 
 ```bash
-npx playwright test api.spec.js
+npx playwright test tests/api/
 ```
 
 **Запуск UI тестов**
