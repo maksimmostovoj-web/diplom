@@ -1,5 +1,11 @@
-export * from './challenger.service.js'
-export * from './challenges.service.js'
-export * from './todo.service.js'
-export * from './todos.service.js'
-export * from './heartbeat.service.js'
+const { ChallengerService } = require('./challenger.service.js')
+const { ChallengesService } = require('./challenges.service.js')
+const { TodoService } = require('./todo.service.js')
+const { TodosService } = require('./todos.service.js')
+
+module.exports = {
+  ChallengerService,
+  ChallengesService,
+  TodoService,
+  TodosService
+}

@@ -1,8 +1,7 @@
-export class SettingsPage {
+class SettingsPage {
   constructor(page) {
     this.page = page
 
-    // Локаторы страницы настроек
     this.nameField = page
       .getByRole('textbox', { name: 'Your Name' })
       .describe('Поле ввода имени в настройках')
@@ -11,10 +10,11 @@ export class SettingsPage {
       .describe('Кнопка обновления настроек')
   }
 
-  // Обновление имени пользователя
   async updateName(newName) {
-    await this.nameField.clear() // Очистка поля
-    await this.nameField.fill(newName) // Ввод нового имени
-    await this.updateSettingsButton.click() // Сохранение изменений
+    await this.nameField.clear()
+    await this.nameField.fill(newName)
+    await this.updateSettingsButton.click()
   }
 }
+
+module.exports = { SettingsPage }

@@ -4,7 +4,6 @@ class TodosService {
     this.baseURL = baseURL
   }
 
-  // Получение всех задач
   async get(token) {
     const response = await this.request.get(`${this.baseURL}todos`, {
       headers: { 'x-challenger': token }
@@ -12,7 +11,6 @@ class TodosService {
     return response
   }
 
-  // Получение задачи по ID
   async getById(token, id) {
     const response = await this.request.get(`${this.baseURL}todos/${id}`, {
       headers: { 'x-challenger': token }
@@ -20,7 +18,6 @@ class TodosService {
     return response
   }
 
-  // Получение задач с фильтром
   async getByFilter(token, filter) {
     const response = await this.request.get(`${this.baseURL}todos?${filter}`, {
       headers: { 'x-challenger': token }
@@ -28,7 +25,6 @@ class TodosService {
     return response
   }
 
-  // Получение только заголовков для todos
   async head(token) {
     const response = await this.request.head(`${this.baseURL}todos`, {
       headers: { 'x-challenger': token }
@@ -36,7 +32,6 @@ class TodosService {
     return response
   }
 
-  // Создание новой задачи
   async post(token, payload) {
     const response = await this.request.post(`${this.baseURL}todos`, {
       headers: {
@@ -48,7 +43,6 @@ class TodosService {
     return response
   }
 
-  // Обновление задачи (POST /todos/{id})
   async update(token, id, payload) {
     const response = await this.request.post(`${this.baseURL}todos/${id}`, {
       headers: { 'x-challenger': token },
@@ -57,7 +51,6 @@ class TodosService {
     return response
   }
 
-  // Полное обновление задачи (PUT)
   async put(token, id, payload) {
     const response = await this.request.put(`${this.baseURL}todos/${id}`, {
       headers: {
@@ -69,7 +62,6 @@ class TodosService {
     return response
   }
 
-  // Удаление задачи
   async delete(token, id) {
     const response = await this.request.delete(`${this.baseURL}todos/${id}`, {
       headers: { 'x-challenger': token }

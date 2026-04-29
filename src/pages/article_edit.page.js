@@ -2,14 +2,6 @@ export class ArticleEditPage {
   constructor(page) {
     this.page = page
 
-    // Локаторы для редактирования статьи
-    this.editArticleLinks = page
-      .getByRole('link', { name: ' Edit Article' })
-      .describe('Ссылки на редактирование статьи')
-    this.deleteArticleButtons = page
-      .getByRole('button', { name: ' Delete Article' })
-      .describe('Кнопки удаления статьи')
-
     // Локаторы для формы редактирования
     this.articleTitleInput = page
       .getByRole('textbox', { name: 'Article Title' })
@@ -20,18 +12,10 @@ export class ArticleEditPage {
     this.updateButton = page
       .getByRole('button', { name: 'Update Article' })
       .describe('Кнопка обновления статьи')
-
-    // Локаторы для проверок
-    this.editButton = page
-      .locator('a')
-      .filter({ hasText: 'Edit Article' })
-      .describe('Кнопка редактирования статьи')
   }
 
   // Редактирование статьи
   async editArticle(title, about, articleIndex = 0) {
-    await this.editArticleLinks.nth(articleIndex).click()
-
     if (title) {
       await this.articleTitleInput.fill(title)
     }
@@ -41,22 +25,5 @@ export class ArticleEditPage {
     }
 
     await this.updateButton.click()
-  }
-
-  // Удаление статьи
-  async deleteArticle(articleIndex = 0) {
-    return new Promise((resolve) => {
-      this.page.once('dialog', async (dialog) => {
-        await dialog.accept()
-        resolve(dialog.message())
-      })
-
-      this.deleteArticleButtons.nth(articleIndex).click()
-    })
-  }
-
-  // Получение кнопки редактирования как элемент
-  getEditButton() {
-    return this.editButton
   }
 }

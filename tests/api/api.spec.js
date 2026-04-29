@@ -1,9 +1,9 @@
 const { expect } = require('@playwright/test')
-const { apiTest } = require('../../src/helpers/fixtures/index')
-const { TodoBuilder } = require('../../src/helpers/builders/index')
+const { apiTest } = require('../../src/helpers/fixtures/index.js')
+const { TodoBuilder } = require('../../src/helpers/builders/index.js')
 
 apiTest(
-  'GET /challenges - получить список челленджей',
+  '@api @smoke GET /challenges - получить список челленджей',
   async ({ api, challengerToken }) => {
     const response = await api.challengesService.get(challengerToken)
     const body = await response.json()
@@ -18,7 +18,7 @@ apiTest(
 )
 
 apiTest(
-  'GET /todos - получить все задачи',
+  '@api @regression GET /todos - получить все задачи',
   async ({ api, challengerToken }) => {
     const response = await api.todosService.get(challengerToken)
     const body = await response.json()
@@ -28,13 +28,16 @@ apiTest(
   }
 )
 
-apiTest('GET /todo - 404 Not Found', async ({ api, challengerToken }) => {
-  const response = await api.todoService.get(challengerToken)
-  expect(response.status()).toBe(404)
-})
+apiTest(
+  '@api @regression GET /todo - 404 Not Found',
+  async ({ api, challengerToken }) => {
+    const response = await api.todoService.get(challengerToken)
+    expect(response.status()).toBe(404)
+  }
+)
 
 apiTest(
-  'GET /todos/{id} - получить задачу по ID',
+  '@api @regression GET /todos/{id} - получить задачу по ID',
   async ({ api, challengerToken }) => {
     const todoBuilder = new TodoBuilder()
       .addTitle()
@@ -64,16 +67,19 @@ apiTest(
   }
 )
 
-apiTest('GET /todos/{id} - 404 Not Found', async ({ api, challengerToken }) => {
-  const response = await api.todosService.getById(challengerToken, 999999)
-  const body = await response.json()
+apiTest(
+  '@api @regression GET /todos/{id} - 404 Not Found',
+  async ({ api, challengerToken }) => {
+    const response = await api.todosService.getById(challengerToken, 999999)
+    const body = await response.json()
 
-  expect(response.status()).toBe(404)
-  expect(body.errorMessages).toBeTruthy()
-})
+    expect(response.status()).toBe(404)
+    expect(body.errorMessages).toBeTruthy()
+  }
+)
 
 apiTest(
-  'POST /todos - создать новую задачу',
+  '@api @smoke POST /todos - создать новую задачу',
   async ({ api, challengerToken }) => {
     const todoBuilder = new TodoBuilder()
       .addTitle()
@@ -95,13 +101,13 @@ apiTest(
 )
 
 apiTest(
-  'POST /todos - 400 Bad Request (неверный doneStatus)',
+  '@api @regression POST /todos - 400 Bad Request (неверный doneStatus)',
   async ({ api, challengerToken }) => {
-    const invalidTodo = {
-      title: 'Invalid Todo',
-      doneStatus: 'not-a-boolean',
-      description: 'Test description'
-    }
+    const invalidTodo = new TodoBuilder()
+      .addTitle()
+      .addDescription()
+      .addInvalidDoneStatus()
+      .generate()
 
     const response = await api.todosService.post(challengerToken, invalidTodo)
     const body = await response.json()
@@ -112,23 +118,29 @@ apiTest(
 )
 
 apiTest(
-  'PUT /todos/{id} - полное обновление задачи',
+  '@api @regression PUT /todos/{id} - полное обновление задачи',
   async ({ api, challengerToken }) => {
-    const todoBuilder = new TodoBuilder()
-      .addTitle('Original')
+    const originalTodo = new TodoBuilder()
+      .addTitle()
       .addStatus(false)
-      .addDescription('Original Desc')
+      .addDescription()
       .generate()
 
     const createResponse = await api.todosService.post(
       challengerToken,
-      todoBuilder
+      originalTodo
     )
     const createdTodo = await createResponse.json()
 
+    const updatedTodoData = new TodoBuilder()
+      .addTitle()
+      .addStatus(true)
+      .addDescription()
+      .generate()
+
     const fullUpdate = {
-      title: 'Fully Updated',
-      description: 'New Description',
+      title: updatedTodoData.title,
+      description: updatedTodoData.description,
       doneStatus: true
     }
 
@@ -145,17 +157,17 @@ apiTest(
 )
 
 apiTest(
-  'DELETE /todos/{id} - удалить задачу',
+  '@api @regression DELETE /todos/{id} - удалить задачу',
   async ({ api, challengerToken }) => {
-    const todoBuilder = new TodoBuilder()
-      .addTitle('To Delete')
+    const todoToDelete = new TodoBuilder()
+      .addTitle()
       .addStatus(false)
-      .addDescription('Will be deleted')
+      .addDescription()
       .generate()
 
     const createResponse = await api.todosService.post(
       challengerToken,
-      todoBuilder
+      todoToDelete
     )
     const createdTodo = await createResponse.json()
 
@@ -174,7 +186,7 @@ apiTest(
 )
 
 apiTest(
-  'HEAD /todos - получить только заголовки',
+  '@api @regression HEAD /todos - получить только заголовки',
   async ({ api, challengerToken }) => {
     const response = await api.todosService.head(challengerToken)
 

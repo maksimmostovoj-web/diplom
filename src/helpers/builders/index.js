@@ -1,9 +1,11 @@
-const { UserBuilder } = require('./user.builder')
-const { ArticleBuilder } = require('./article.builder')
-const { TodoBuilder } = require('./todo.builder')
+const { UserBuilder } = require('./user.builder.js')
+const { ArticleBuilder } = require('./article.builder.js')
+const { TodoBuilder } = require('./todo.builder.js')
+const { CommentBuilder } = require('./comment.builder.js')
 
 module.exports = {
   UserBuilder,
   ArticleBuilder,
-  TodoBuilder
+  TodoBuilder,
+  CommentBuilder
 }

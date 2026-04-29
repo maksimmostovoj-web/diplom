@@ -1,8 +1,8 @@
-import { test as base, expect } from '@playwright/test'
-import { App } from '../../pages/app.page.js'
-import { UserBuilder } from '../builders/index.js'
+const { test: base, expect } = require('@playwright/test')
+const { App } = require('../../pages/app.page.js')
+const { UserBuilder } = require('../builders/index.js')
 
-export const test = base.extend({
+const test = base.extend({
   // Базовая фикстура приложения
   app: async ({ page }, use) => {
     const app = new App(page)
@@ -10,7 +10,7 @@ export const test = base.extend({
   },
 
   // Фикстура авторизованного пользователя
-  registredUser: async ({ app }, use) => {
+  registeredUser: async ({ app }, use) => {
     // Генерация тестовых данных пользователя
     const user = new UserBuilder().withEmail().withName().withPassword().build()
 
@@ -25,26 +25,7 @@ export const test = base.extend({
     await expect(app.homePage.userName).toBeVisible()
 
     await use({ app, user, page: app.page })
-  },
-
-  // Фикстура страницы профиля пользователя
-  userProfilePage: async ({ app }, use) => {
-    const user = new UserBuilder().withEmail().withName().withPassword().build()
-    const { email, name, password } = user
-
-    await app.mainPage.open('/')
-    await app.mainPage.gotoRegister()
-    await app.registerPage.register(name, email, password)
-    await app.mainPage.open(`/#/profile/${name}`)
-    await use({ app, user, page: app.page })
-  },
-
-  // Фикстура для создания пользователя с ролью
-  createWithRole: async ({}, use) => {
-    const user = (role = 'user') => ({
-      name: 'Test User',
-      role: role
-    })
-    await use(user)
   }
 })
+
+module.exports = { test }

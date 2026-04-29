@@ -1,4 +1,4 @@
-export class ArticlePage {
+class ArticlePage {
   constructor(page) {
     this.page = page
 
@@ -29,17 +29,23 @@ export class ArticlePage {
     this.postCommentButton = page
       .getByRole('button', { name: 'Post Comment' })
       .describe('Кнопка отправки комментария')
+
+    // Локаторы для редактирования/удаления со страницы статьи
+    this.editArticleLinks = page
+      .getByRole('link', { name: ' Edit Article' })
+      .describe('Ссылки на редактирование статьи')
+    this.deleteArticleButtons = page
+      .getByRole('button', { name: ' Delete Article' })
+      .describe('Кнопки удаления статьи')
   }
 
   // Создание новой статьи
   async createArticle(title, about, content, tags) {
     await this.newArticleLink.click()
-
     await this.articleTitleInput.fill(title)
     await this.articleAboutInput.fill(about)
     await this.articleContentInput.fill(content)
     await this.tagsInput.fill(tags)
-
     await this.publishButton.click()
   }
 
@@ -60,4 +66,14 @@ export class ArticlePage {
   getCommentText(text) {
     return this.page.getByText(text).describe(`Текст комментария: "${text}"`)
   }
+
+  // Получение тега как элемент
+  getTagElement(tag) {
+    return this.page
+      .getByRole('listitem')
+      .filter({ hasText: tag })
+      .describe(`Тег статьи: "${tag}"`)
+  }
 }
+
+module.exports = { ArticlePage }

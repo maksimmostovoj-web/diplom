@@ -1,6 +1,15 @@
-export * from './main.page.js'
-export * from './register.page.js'
-export * from './home.page.js'
-export * from './settings.page.js'
-export * from './article.page.js'
-export * from './article_edit.page.js'
+const { MainPage } = require('./main.page.js')
+const { RegisterPage } = require('./register.page.js')
+const { HomePage } = require('./home.page.js')
+const { SettingsPage } = require('./settings.page.js')
+const { ArticlePage } = require('./article.page.js')
+const { ArticleEditPage } = require('./article_edit.page.js')
+
+module.exports = {
+  MainPage,
+  RegisterPage,
+  HomePage,
+  SettingsPage,
+  ArticlePage,
+  ArticleEditPage
+}

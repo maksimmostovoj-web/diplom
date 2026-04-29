@@ -4,7 +4,6 @@ class ChallengesService {
     this.baseURL = baseURL
   }
 
-  // Получение списка всех челленджей
   async get(token) {
     const response = await this.request.get(`${this.baseURL}challenges`, {
       headers: { 'x-challenger': token }

@@ -16,6 +16,11 @@ class TodoBuilder {
     return this
   }
 
+  addInvalidDoneStatus() {
+    this.doneStatus = 'not-a-boolean'
+    return this
+  }
+
   generate() {
     return { ...this }
   }

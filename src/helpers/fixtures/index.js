@@ -1,4 +1,4 @@
-const { test: uiTest } = require('./fixture')
-const { test: apiTest } = require('./api.fixture')
+const { test: uiTest } = require('./fixture.js')
+const { test: apiTest } = require('./api.fixture.js')
 
 module.exports = { uiTest, apiTest }

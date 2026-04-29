@@ -1,17 +1,16 @@
-import {
+const {
   HomePage,
   MainPage,
   RegisterPage,
   SettingsPage,
   ArticlePage,
   ArticleEditPage
-} from './index.js'
+} = require('./index.js')
 
-export class App {
+class App {
   constructor(page) {
     this.page = page
 
-    // Инициализация всех страниц
     this.mainPage = new MainPage(page)
     this.registerPage = new RegisterPage(page)
     this.homePage = new HomePage(page)
@@ -20,3 +19,5 @@ export class App {
     this.articleEditPage = new ArticleEditPage(page)
   }
 }
+
+module.exports = { App }

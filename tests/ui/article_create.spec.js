@@ -1,10 +1,13 @@
-import { test } from '../../src/helpers/fixtures/fixture.js'
-import { expect } from '@playwright/test'
-import { ArticleBuilder } from '../../src/helpers/builders/article.builder.js'
+const { test } = require('../../src/helpers/fixtures/fixture.js')
+const { expect } = require('@playwright/test')
+const {
+  ArticleBuilder
+} = require('../../src/helpers/builders/article.builder.js')
 
-test('Пользователь создает новую статью', async ({ registredUser }) => {
-  const { app } = registredUser
-  // Генерация тестовых данных для статьи
+test('@ui @smoke Пользователь создает новую статью', async ({
+  registeredUser
+}) => {
+  const { app } = registeredUser
   const article = new ArticleBuilder()
     .withTitle()
     .withAbout()
@@ -13,13 +16,11 @@ test('Пользователь создает новую статью', async ({
     .build()
   const { title, about, content, tags } = article
 
-  // Создание статьи через форму
   await app.articlePage.createArticle(title, about, content, tags)
-
-  // Проверка, что статья успешно создана
   await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
+  await expect(app.page.getByText(content)).toBeVisible()
+  await expect(app.articlePage.getTagElement(tags)).toBeVisible()
 
-  // Переход в профиль и проверка отображения статьи
   await app.homePage.goToProfile()
   await expect(app.homePage.getArticleLink(title, about)).toBeVisible()
 })

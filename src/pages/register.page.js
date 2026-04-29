@@ -1,8 +1,7 @@
-export class RegisterPage {
+class RegisterPage {
   constructor(page) {
     this.page = page
-    
-    // Локаторы формы регистрации
+
     this.nameInput = page
       .getByRole('textbox', { name: 'Your Name' })
       .describe('Поле ввода имени')
@@ -17,11 +16,12 @@ export class RegisterPage {
       .describe('Кнопка регистрации')
   }
 
-  // Регистрация нового пользователя
   async register(name, email, password) {
-    await this.nameInput.fill(name)      // Ввод имени
-    await this.emailInput.fill(email)    // Ввод email
-    await this.passwordInput.fill(password) // Ввод пароля
-    await this.signupButton.click()      // Нажатие кнопки регистрации
+    await this.nameInput.fill(name)
+    await this.emailInput.fill(email)
+    await this.passwordInput.fill(password)
+    await this.signupButton.click()
   }
 }
+
+module.exports = { RegisterPage }

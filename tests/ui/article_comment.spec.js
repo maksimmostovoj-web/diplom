@@ -1,12 +1,14 @@
-import { test } from '../../src/helpers/fixtures/fixture.js'
-import { expect } from '@playwright/test'
-import { ArticleBuilder } from '../../src/helpers/builders/article.builder.js'
+const { test } = require('../../src/helpers/fixtures/fixture.js')
+const { expect } = require('@playwright/test')
+const {
+  ArticleBuilder,
+  CommentBuilder
+} = require('../../src/helpers/builders/index.js')
 
-test('Пользователь оставляет комментарий к статье', async ({
-  registredUser
+test('@ui @smoke Пользователь оставляет комментарий к статье', async ({
+  registeredUser
 }) => {
-  const { app } = registredUser
-  // Генерация тестовых данных для статьи
+  const { app } = registeredUser
   const article = new ArticleBuilder()
     .withTitle()
     .withAbout()
@@ -14,16 +16,10 @@ test('Пользователь оставляет комментарий к ст
     .withTags()
     .build()
   const { title, about, content, tags } = article
-  // Генерация текста комментария
-  const commentText = new ArticleBuilder().withComment().build().comment
+  const commentText = new CommentBuilder().withComment().build().comment
 
-  // Создание статьи
   await app.articlePage.createArticle(title, about, content, tags)
   await expect(app.articlePage.getArticleHeading(title)).toBeVisible()
-
-  // Добавление комментария к созданной статье
   await app.articlePage.addComment(commentText)
-
-  // Проверка, что комментарий отображается
   await expect(app.articlePage.getCommentText(commentText)).toBeVisible()
 })

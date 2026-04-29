@@ -1,3 +1,4 @@
+// playwright.config.js
 // @ts-check
 import { defineConfig, devices } from '@playwright/test'
 
@@ -26,12 +27,12 @@ export default defineConfig({
   reporter: [['line'], ['html', { open: 'never' }], ['allure-playwright']],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Base URL to use in actions like `await page.goto('')`. */
+    /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'https://realworld.qa.guru/',
     screenshot: 'only-on-failure',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    apiUrl: 'https://apichallenges.herokuapp.com/'
+    apiUrl: 'https://apichallenges.eviltester.com/'
   },
 
   /* Configure projects for major browsers */
