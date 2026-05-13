@@ -1,4 +1,4 @@
-export class ArticleEditPage {
+class ArticleEditPage {
   constructor(page) {
     this.page = page
 
@@ -27,3 +27,5 @@ export class ArticleEditPage {
     await this.updateButton.click()
   }
 }
+
+module.exports = { ArticleEditPage }

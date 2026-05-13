@@ -71,13 +71,6 @@ function formatDuration(ms) {
 
 // Формирует текст сообщения для отправки в Telegram
 function buildMessage(report, stats) {
-  // Выводим отладочную информацию
-  console.log('=== DEBUG ===')
-  console.log('REPORT_LINK from env:', process.env.REPORT_LINK)
-  console.log('PROJECT_NAME:', process.env.PROJECT_NAME)
-  console.log('TELEGRAM_TOKEN:', process.env.TELEGRAM_TOKEN ? 'SET' : 'NOT SET')
-  console.log('============')
-
   const { name, reportName } = report
   const { total, passed, failed, broken, skipped, unknown } = stats
   const duration = report.time?.duration || report.duration || 0
@@ -145,7 +138,7 @@ async function sendToTelegram(token, chatId, imageUrl, text) {
   return data
 }
 
-// нчинается выполнение
+// начинается выполнение
 async function main() {
   // 1. Загружаем отчет из файла
   const report = loadReport(REPORT_PATH)

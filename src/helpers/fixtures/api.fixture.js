@@ -1,9 +1,8 @@
 const { test: base } = require('@playwright/test')
 const { Api } = require('../../services/api.facade.js')
 
-// Получаем конфиг Playwright
-const playwrightConfig = require('../../../playwright.config.js')
-const API_URL = process.env.API_URL || playwrightConfig.default.use.apiUrl
+// URL API берется только из переменной окружения
+const API_URL = process.env.API_URL || 'https://apichallenges.eviltester.com/'
 
 const test = base.extend({
   api: async ({ request }, use) => {
