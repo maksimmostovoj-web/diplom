@@ -1,3 +1,4 @@
+// scripts/send.mjs
 // Подключаем модули для работы с файловой системой
 import { readFileSync, existsSync } from 'fs'
 import { fileURLToPath } from 'url'
