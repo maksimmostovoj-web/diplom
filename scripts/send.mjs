@@ -140,29 +140,22 @@ async function sendToTelegram(token, chatId, imageUrl, text) {
 
 // начинается выполнение
 async function main() {
-  // 1. Проверяем существование отчета
-  if (!existsSync(REPORT_PATH)) {
-    console.error(`Report file not found: ${REPORT_PATH}`)
-    console.error('Skipping notification - no report available')
-    return
-  }
-
-  // 2. Загружаем отчет из файла
+  // 1. Загружаем отчет из файла
   const report = loadReport(REPORT_PATH)
 
-  // 3. Получаем настройки Telegram
+  // 2. Получаем настройки Telegram
   const { token, chat } = getConfig()
 
-  // 4. Извлекаем статистику из отчета
+  // 3. Извлекаем статистику из отчета
   const stats = getStats(report)
 
-  // 5. Создаем ссылку на диаграмму с результатами
+  // 4. Создаем ссылку на диаграмму с результатами
   const chartUrl = buildChartUrl(stats)
 
-  // 6. Формируем текст сообщения
+  // 5. Формируем текст сообщения
   const message = buildMessage(report, stats)
 
-  // 7. Отправляем уведомление
+  // 6. Отправляем уведомление
   console.log('Sending notification to Telegram...')
   await sendToTelegram(token, chat, chartUrl, message)
   console.log('Notification sent successfully!')
